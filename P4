@@ -1,0 +1,11 @@
+SELECT
+  job_id,
+  total_slot_ms / (execution_time / 1000) AS avg_slots_utilized
+FROM
+  `project_id.region-us.INFORMATION_SCHEMA.JOBS_BY_PROJECT`
+WHERE
+  job_type = 'QUERY'
+  AND state = 'DONE'
+ORDER BY
+  creation_time DESC
+LIMIT 10;
