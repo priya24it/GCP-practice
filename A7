@@ -1,0 +1,26 @@
+WITH timeline_data AS (
+  SELECT
+    job_id,
+    total_slot_ms,
+    SUM(elapsed_time) AS total_elapsed_time_ms
+  FROM (
+    SELECT
+      job_id,
+      total_slot_ms,
+      timeline.elapsed_time AS elapsed_time
+    FROM
+      `project_id.region-us.INFORMATION_SCHEMA.JOBS_BY_PROJECT`,
+      UNNEST(timeline) AS timeline
+  )
+  GROUP BY job_id, total_slot_ms
+)
+SELECT
+  job_id,
+  total_slot_ms,
+  total_elapsed_time_ms,
+  total_slot_ms / total_elapsed_time_ms AS avg_slots_utilized
+FROM
+  timeline_data
+ORDER BY
+  total_elapsed_time_ms DESC
+LIMIT 10;
