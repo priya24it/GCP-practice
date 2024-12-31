@@ -1,0 +1,14 @@
+protoPayload.methodName="jobservice.jobcompleted"
+
+
+SELECT
+  creation_time,
+  job_id,
+  total_slot_ms
+FROM
+  `project-id.dataset.INFORMATION_SCHEMA.JOBS`
+WHERE
+  state = 'DONE'
+ORDER BY
+  creation_time DESC
+LIMIT 10;
