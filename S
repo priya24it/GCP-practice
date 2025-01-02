@@ -1,0 +1,17 @@
+Certainly! Here's a rewritten version of your statement:
+
+
+---
+
+I created a reservation and assigned an Assignment ID at the project level with the following details: Reservation ID, maximum slots capacity of 50, and baseline slots set to zero.
+
+I ran two queries:
+
+1. The first query consumed approximately 38 GB of data and utilized 47 slots, returning the data successfully.
+
+
+2. The second query consumed around 100 GB of data, but due to slot unavailability, it encountered a "query insert as slots contention" message, as shown in the attached screenshots. Despite the contention, the query returned the data after approximately 3 minutes.
+
+
+
+Can you confirm if this is the expected behavior, considering that the data was still retrieved even though slots were unavailable in the second scenario?
